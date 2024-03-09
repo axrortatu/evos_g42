@@ -11,15 +11,8 @@ public class categoryService extends BaseModel {
         return categories;
     }
 
-    @Override
-    public boolean add(Object object) {
-        if (validate(object)) {
-            Category category = (Category) object;
-            if (indexCategories < categories.length) {
-                categories[indexCategories++] = category;
-                return true;
-            }
-        }
+    public boolean add(String name) {
+
         return false;
     }
     private boolean validate(Object object) {
@@ -30,6 +23,11 @@ public class categoryService extends BaseModel {
 
     private boolean isExist(String name) {
 
+        return false;
+    }
+
+    @Override
+    public boolean add(Object object) {
         return false;
     }
 }
