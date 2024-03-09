@@ -27,6 +27,14 @@ public class UserService implements InterfaceService{
         }
         return false;
     }
+    public User loginUser(String username){
+        for (User user : users){
+            if(user != null && user.getUsername().equals(username)){
+                return user;
+            }
+        }
+        return null;
+    }
 
     @Override
     public Object update(Object object) {
