@@ -8,4 +8,8 @@ public abstract class BaseModel {
     protected BaseModel() {
         this.id = UUID.randomUUID();
     }
+
+    public UUID getId() {
+        return id;
+    }
 }
