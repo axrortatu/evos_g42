@@ -19,17 +19,17 @@ public class CategoryService implements InterfaceService {
 
     @Override
     public boolean delete(UUID id) {
-        boolean deleteCategory=false;
+        boolean deleteCategory = false;
         for (int i = 0 ; i < index ; i++){
             if (categories[i].getId().equals(id)){
-                deleteCategory=true;
-                categories=null;
-                for (int j = i ;  j < categories.length-1; j++ ){
-                    categories[j]=categories[j+1];
-                }
-                categories[categories.length-1]=null;
+                deleteCategory = true;
+            }
+            if (deleteCategory){
+                categories[i] = categories[i+1];
             }
         }
+        index--;
+        categories[index] = null;
         return deleteCategory;
     }
 
