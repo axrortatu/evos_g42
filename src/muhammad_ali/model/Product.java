@@ -1,4 +1,4 @@
-package sardor.model;
+package muhammad_ali.model;
 
 import java.util.UUID;
 
@@ -29,14 +29,5 @@ public class Product extends BaseModel {
 
     public void setCategoryId(UUID categoryId) {
         this.categoryId = categoryId;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", categoryId=" + categoryId +
-                '}';
     }
 }

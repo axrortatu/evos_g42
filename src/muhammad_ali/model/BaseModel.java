@@ -1,4 +1,4 @@
-package sardor.model;
+package muhammad_ali.model;
 
 import java.util.UUID;
 
