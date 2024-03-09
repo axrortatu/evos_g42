@@ -13,20 +13,11 @@ public class CategoryService implements InterfaceService {
     }
 
     @Override
-    public Object update(Object object) {
-        return null;
+    public void update(UUID id, String name) {
+      for (Category category:categories);
     }
 
-    public Object update(Object object, String name) {
-        Category updateCategory = (Category) object;
-        if(hasCategory(updateCategory) != null){
-            updateCategory.setName(name);
-            return updateCategory;
-        }
 
-
-        return null;
-    }
 
     private Category hasCategory(Category category){
         for(int i = 0; i < index; i++){

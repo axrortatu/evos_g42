@@ -9,8 +9,7 @@ public class OrderService implements InterfaceService{
     }
 
     @Override
-    public Object update(Object object) {
-        return null;
+    public void update(UUID id ,String name) {
     }
 
     @Override
