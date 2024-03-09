@@ -7,7 +7,7 @@ public interface InterfaceService {
 
     Object update(Object object);
 
-    void delete(UUID id);
+    boolean delete(UUID id);
 
     Object[] list(UUID id);
 }
