@@ -16,10 +16,28 @@ public class CategoryService implements InterfaceService {
     public Object update(Object object) {
         return null;
     }
+    public Object update(Object object, String name) {
+        Category updateCategory = (Category) object;
+        if(hasCategory(updateCategory) != null){
+            updateCategory.setName(name);
+            return updateCategory;
+        }
+
+        return null;
+    }
+
+    private Category hasCategory(Category category){
+        for(int i = 0; i < index; i++){
+            if(categories[i] != null && categories[i].getName().equals(category.getName())){
+                return categories[i];
+            }
+        }
+        return null;
+    }
 
     @Override
     public boolean delete(UUID id) {
-        boolean deleteCategory=false;
+        boolean deleteCategory = false;
         for (int i = 0 ; i < index ; i++){
             if (categories[i].getId().equals(id)){
                 deleteCategory=true;
