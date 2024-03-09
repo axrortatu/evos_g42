@@ -2,11 +2,16 @@ package sardor.service;
 
 import sardor.model.User;
 
-public class UserService {
+import java.util.UUID;
+
+public class UserService implements InterfaceService{
     static User[] users = new User[1000];
     static int userCount = 0;
 
-    public boolean addUser(User user){
+
+    @Override
+    public boolean add(Object object) {
+        User user = (User) object;
         if (!hasUser(user.getUsername())){
             users[userCount++] = user;
             return true;
@@ -21,5 +26,20 @@ public class UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public Object update(Object object) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(UUID id) {
+        return false;
+    }
+
+    @Override
+    public Object[] list(UUID id) {
+        return new Object[0];
     }
 }
