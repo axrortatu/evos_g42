@@ -1,9 +1,10 @@
 package jahongir.Service;
 
-import jahongir.model.BaseModel;
 import jahongir.model.Category;
 
-public class categoryService extends BaseModel {
+import java.util.UUID;
+
+public class categoryService extends BaseService {
     private Category[] categories = new Category[100];
     private int indexCategories;
 
@@ -11,24 +12,36 @@ public class categoryService extends BaseModel {
         return categories;
     }
 
-    public boolean add(String name) {
-
-        return false;
-    }
-    private boolean validate(Object object) {
-
-        return false;
-    }
-
-
-    private boolean isExist(String name) {
-
+    @Override
+    public boolean add(Object object) {
+        if (validate(object)) {
+            Category category = (Category) object;
+            if (indexCategories < categories.length) {
+                categories[indexCategories++] = category;
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
-    public boolean add(Object object) {
+    public boolean delete(UUID id) {
         return false;
     }
+
+    @Override
+    public Object[] list(UUID id) {
+        return new Object[0];
+    }
+
+
+    @Override
+    protected boolean validate(Object object) {
+
+        return false;
+    }
+
+
+
 }
 
