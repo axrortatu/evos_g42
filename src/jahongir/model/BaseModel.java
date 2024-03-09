@@ -3,7 +3,7 @@ package jahongir.model;
 
 import java.util.UUID;
 
-public abstract class BaseModel {
+public class BaseModel {
     protected UUID id;
     protected UUID parentId;
     protected String name;
@@ -31,12 +31,5 @@ public abstract class BaseModel {
     public void setName(String name) {
         this.name = name;
     }
-
-    public abstract boolean add(Object object);
-
-    public abstract boolean add(String name);
-
-    protected abstract boolean validate(Object object);
-
-    protected abstract boolean isExist(String name);
 }
+
