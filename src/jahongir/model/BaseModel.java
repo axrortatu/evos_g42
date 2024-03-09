@@ -8,4 +8,6 @@ public abstract class BaseModel {
     protected BaseModel() {
         this.id = UUID.randomUUID();
     }
+
+    public abstract boolean add(Object object);
 }
