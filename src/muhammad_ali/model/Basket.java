@@ -9,11 +9,10 @@ public class Basket extends BaseModel {
     private double deliveryPrice;
     private UUID userId;
 
-    public Basket(UUID userId, UUID productId, int cnt, int deliveryPrice){
+    public Basket(UUID userId, UUID productId, int cnt){
         this.userId = userId;
         this.productId = productId;
         this.cnt = cnt;
-        this.deliveryPrice = deliveryPrice;
     }
 
     public double getDeliveryPrice() {

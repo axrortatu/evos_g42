@@ -1,5 +1,6 @@
 package muhammad_ali.service;
 
+import muhammad_ali.model.Category;
 import muhammad_ali.model.Product;
 
 import java.util.UUID;
@@ -54,5 +55,21 @@ public class ProductService {
             }
         }
         return null;
+    }
+    public Product[] getProductsByCategoryId(UUID categoryId){
+        int count=0;
+        for (Product product : products){
+            if (product != null && product.getCategoryId().equals(categoryId)){
+                count++;
+            }
+        }
+        Product products1[] = new Product[count];
+        index = 0;
+        for (Product product : products){
+            if (product != null && product.getCategoryId().equals(categoryId)){
+                products1[index++] = product;
+            }
+        }
+        return products1;
     }
 }

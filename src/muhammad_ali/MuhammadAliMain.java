@@ -1,13 +1,7 @@
 package muhammad_ali;
 
-import muhammad_ali.model.Category;
-import muhammad_ali.model.Order;
-import muhammad_ali.model.Product;
-import muhammad_ali.model.User;
-import muhammad_ali.service.CategoryService;
-import muhammad_ali.service.OrderService;
-import muhammad_ali.service.ProductService;
-import muhammad_ali.service.UserService;
+import muhammad_ali.model.*;
+import muhammad_ali.service.*;
 
 
 import java.util.Scanner;
@@ -21,6 +15,8 @@ public class MuhammadAliMain {
         UserService userService = new UserService();
         CategoryService categoryService = new CategoryService();
         ProductService productService = new ProductService();
+        OrderService orderService = new OrderService();
+        BasketService basketService = new BasketService();
         int option1 = 10;
         while (option1 != 0){
             System.out.println("1.User 2.Login User and Order 3.Category 4.Product 5.History 0.Exit");
@@ -57,14 +53,38 @@ public class MuhammadAliMain {
                 case 2 -> {
                     System.out.println("Enter userName :");
                     String userName = scannerStr.nextLine();
-                    if (userService.login(userName) != null){
+                    User currentUser = userService.login(userName);
+                    if (currentUser != null){
                         int option3 = 10;
                         System.out.println("1.Order 2.Show Basket 3.Confirm");
                         option3 = scannerInt.nextInt();
                         switch (option3){
                             case 1 -> {
                                 Order order = new Order();
-
+                                Category[] categories =  categoryService.getCategories();
+                                printCategories(categories);
+                                System.out.println("Enter categoryId : ");
+                                String Id = scannerStr.nextLine();
+                                Product[] products = productService.getProductsByCategoryId(UUID.fromString(Id));
+                                printProduct(products);
+                                System.out.println("Enter product Id : ");
+                                String productId = scannerStr.nextLine();
+                                order.setProductId(UUID.fromString(productId));
+                                System.out.println("Enter count : ");
+                                int count = scannerInt.nextInt();
+                                order.setCnt(count);
+                                orderService.addOrder(order, currentUser.getId());
+                                Basket basket = new Basket(currentUser.getId(), UUID.fromString(productId), count);
+                                basketService.addBasket(basket);
+                            }
+                            case 2 -> {
+                                 Basket[] basket = basketService.getMyBasket(currentUser.getId());
+                                 printBasket(basket, productService);
+                            }
+                            case 3 -> {
+                                printReceipt(basketService.getMyBasket(currentUser.getId()), productService);
+                                orderService.payOrder(currentUser.getId());
+                                basketService.clearBasket(currentUser.getId());
                             }
                         }
                     }
@@ -152,6 +172,7 @@ public class MuhammadAliMain {
                             case 4 -> {
                                 Product[] products = productService.getProducts();
                                 printProduct(products);
+
                             }
                         }
                     }
@@ -176,9 +197,31 @@ public class MuhammadAliMain {
     public static void printProduct(Product[] products){
         for (Product product : products) {
             if (product != null){
-                System.out.println(product.getName() + "  Id : " + product.getId());
+                System.out.println(product.getName() +"  price : " + product.getPrice() + "  Id : " + product.getId());
             }
         }
+    }
+    public static void printBasket(Basket[] baskets, ProductService productService){
+        for (Basket basket : baskets){
+            if (basket != null){
+                Product product = productService.getProductByID(basket.getProductId());
+                System.out.println(product.getName() + "  Count : " + basket.getCnt());
+            }
+        }
+    }
+    public static void printReceipt(Basket[] baskets, ProductService productService){
+        double sum = 0;
+        for (Basket basket : baskets){
+            if (basket != null){
+                Product product = productService.getProductByID(basket.getProductId());
+                System.out.println(product.getName() + "  Count : " + basket.getCnt());
+                System.out.println();
+                sum += product.getPrice() * basket.getCnt();
+            }
+        }
+        System.out.println("Sum : " + sum);
+        System.out.println("Delivery price : " + sum * 0.1);
+        System.out.println("Total : " + sum + sum * 0.1);
     }
 
 }
