@@ -2,27 +2,29 @@ package muhammad_ali.service;
 
 import muhammad_ali.model.Category;
 
+import javax.print.DocFlavor;
 import java.util.UUID;
 
 public class CategoryService {
     private Category[] categories = new Category[100];
-    private Category findCategoryById(UUID categoryId) {
+
+    private int index=0;
+    public boolean addCategory(Category category){
+        if (!hasCategory(category.getName())){
+            categories[index++]=category;
+            return true;
+        }
+        return false;
+    }
+    public boolean hasCategory(String categoryName){
         for (Category category : categories) {
-            if (category != null && category.getId().equals(categoryId)) {
-                return category;
+            if (category.getName().equals(categoryName)){
+                return true;
             }
         }
-        return null;
+        return false;
     }
-    public boolean updateCategory(UUID categoryId, String name) {
-        Category existingCategory = findCategoryById(categoryId);
-        if (existingCategory != null) {
-            existingCategory.setName(name);
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
 
 }
