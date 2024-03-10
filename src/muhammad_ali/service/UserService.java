@@ -15,17 +15,23 @@ public class UserService {
 
     private boolean hasUser(String username) {
         for (User user : users) {
-            return user != null && user.getUsername().equals(username);
+            if (user != null && user.getUsername().equals(username)) {
+                return true;
+            }
         }
         return false;
     }
 
+
     public boolean userLogin(String username) {
         for (User user : users) {
-            return user != null && user.getUsername().equals(username);
+            if (user != null && user.getUsername().equals(username)) {
+                return true;
+            }
         }
         return false;
     }
+
 
     public boolean deleteUser(String username) {
         for (User user : users) {
