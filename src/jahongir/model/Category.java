@@ -4,15 +4,16 @@ import java.util.UUID;
 
 
 public class Category extends BaseModel {
+    private String name;
     
     public Category(String name) {
-        super.name = name;
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "name='" + super.name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
   
