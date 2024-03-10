@@ -18,7 +18,7 @@ public class CategoryService {
     }
     public boolean hasCategory(String categoryName){
         for (Category category : categories) {
-            if (category.getName().equals(categoryName)){
+            if (category != null && category.getName().equals(categoryName)){
                 return true;
             }
         }
