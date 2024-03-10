@@ -15,9 +15,8 @@ public class OrderService {
 
     public void payOrder(UUID userId) {
         for (int i = 0; i < index; i++) {
-            if (orders[i] != null && orders[i].getUserId().equals(userId)) {
+            if (orders[i] != null && orders[i].getUserId().equals(userId) && !orders[i].isCompeted()) {
                 orders[i].setCompeted(true);
-
             }
         }
     }
