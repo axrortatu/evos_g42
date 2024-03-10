@@ -30,6 +30,13 @@ public class CategoryService extends BaseService {
     public boolean update(UUID id, Object object) {
         Category updateCategory = (Category) object;
 
+        for (int i = 0; i < indexCategories; i++) {
+            if (categories[i].getId().equals(id)) {
+                categories[i].setName(updateCategory.getName());
+                return true;
+            }
+        }
+
         return false;
     }
 
