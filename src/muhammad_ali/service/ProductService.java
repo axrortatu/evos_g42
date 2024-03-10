@@ -2,6 +2,8 @@ package muhammad_ali.service;
 
 import muhammad_ali.model.Product;
 
+import java.util.UUID;
+
 public class ProductService {
     private Product[] products=new Product[100];
     private int index=0;
@@ -24,5 +26,18 @@ public class ProductService {
     }
     public Product[] getProducts(){
         return products;
+    }
+    public void deleteProduct(UUID id){
+        for (int i = 0; i <index ; i++) {
+          if (products[i]!=null&&products[i].getId().equals(id)){
+              for (int j = i; j <index ; j++) {
+                products[j]=products[j+1];
+              }
+              products[index-1]=null;
+              index--;
+              return;
+          }
+        }
+
     }
 }
