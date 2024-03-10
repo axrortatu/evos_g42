@@ -20,4 +20,7 @@ public class UserService {
         }
         return false;
     }
+    public User[] getUsers(){
+        return users;
+    }
 }
