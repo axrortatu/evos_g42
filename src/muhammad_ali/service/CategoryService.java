@@ -43,6 +43,19 @@ public class CategoryService {
             existingCategory.setName(name);
         }
     }
+    public void deleteCategory(UUID Id){
+        for (int i = 0; i <index ; i++) {
+            if (categories[i]!=null&&categories[i].getId().equals(Id)){
+                for (int j = i; j <index-1 ; j++) {
+                    categories[j]=categories[j+1];
+                }
+                categories[index-1]=null;
+                index--;
+                return;
+            }
+        }
+
+    }
 
 
 }

@@ -32,6 +32,7 @@ public class UserService {
                     users[j] = users[j+1];
                 }
                 users[index - 1] = null;
+                index--;
                 return;
             }
         }
