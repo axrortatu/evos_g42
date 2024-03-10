@@ -1,6 +1,8 @@
 package muhammad_ali.service;
 import muhammad_ali.model.User;
 
+import java.util.UUID;
+
 public class UserService {
 
     private User[] users = new User[100];
@@ -22,5 +24,16 @@ public class UserService {
     }
     public User[] getUsers(){
         return users;
+    }
+    public void deleteUser(String userName){
+        for (int i=0; i < index; i++){
+            if ( users[i] != null && users[i].getUsername().equals(userName)){
+                for (int j = i; j < index -1; j++){
+                    users[j] = users[j+1];
+                }
+                users[index - 1] = null;
+                return;
+            }
+        }
     }
 }
