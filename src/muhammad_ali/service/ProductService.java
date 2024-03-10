@@ -7,7 +7,7 @@ public class ProductService {
     private int index=0;
 
     public boolean addProduct(Product product){
-        if (hasProduct(product.getName())){
+        if (!hasProduct(product.getName())){
             products[index++]=product;
             return true;
         }
@@ -16,10 +16,13 @@ public class ProductService {
 
     private boolean hasProduct(String productName) {
         for (Product product : products) {
-            if (product.getName().equals(productName)){
+            if (product != null && product.getName().equals(productName)){
                 return true;
             }
         }
         return false;
+    }
+    public Product[] getProducts(){
+        return products;
     }
 }
