@@ -40,4 +40,19 @@ public class ProductService {
         }
 
     }
+    public void updateProduct(UUID Id, String name, double price){
+        Product existingProduct = getProductByID(Id);
+        if (existingProduct != null){
+            existingProduct.setName(name);
+            existingProduct.setPrice(price);
+        }
+    }
+    public Product getProductByID(UUID Id){
+        for (Product product : products){
+            if (product != null && product.getId().equals(Id)){
+                return product;
+            }
+        }
+        return null;
+    }
 }
