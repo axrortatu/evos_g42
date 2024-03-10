@@ -41,7 +41,7 @@ public interface Frontend {
             "0. Exit \t" +
             "Chose option: ";
 
-
+    String ErrorMessage = "Something went wrong! Please try again. ";
 
 }
 
