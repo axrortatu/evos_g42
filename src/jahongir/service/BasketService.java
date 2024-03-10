@@ -5,11 +5,11 @@ import jahongir.model.Basket;
 import java.util.UUID;
 
 public class BasketService extends BaseService {
-    private Basket[] baskets = new Basket[100];
+    private Basket[] orders = new Basket[100];
     private int indexBaskets;
 
     public Basket[] getBaskets() {
-        return baskets;
+        return orders;
     }
 
     @Override

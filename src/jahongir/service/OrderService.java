@@ -1,8 +1,6 @@
 package jahongir.service;
 
-import jahongir.model.BaseModel;
 import jahongir.model.Basket;
-import jahongir.model.OrderItem;
 
 import java.util.UUID;
 
