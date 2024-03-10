@@ -22,4 +22,7 @@ public class ProductService {
         }
         return false;
     }
+    public Product[] getProducts(){
+        return products;
+    }
 }
