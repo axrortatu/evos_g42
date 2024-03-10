@@ -24,7 +24,25 @@ public class CategoryService {
         }
         return false;
     }
+    public Category[] getCategories(){
+        return categories;
+    }
 
+    public Category getCategoryById(UUID Id){
+        for (Category category : categories){
+            if (category != null && category.getId().equals(Id)){
+                return category;
+            }
+        }
+        return null;
+    }
+
+    public void updateCategory(UUID Id, String name){
+        Category existingCategory = getCategoryById(Id);
+        if (existingCategory != null){
+            existingCategory.setName(name);
+        }
+    }
 
 
 }
