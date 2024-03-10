@@ -2,8 +2,10 @@ package jahongir.model;
 
 import java.util.UUID;
 
-public abstract class  BaseModel {
+public class BaseModel {
     protected UUID id;
+    protected UUID parentId;
+    protected String name;
 
     protected BaseModel() {
         this.id = UUID.randomUUID();
@@ -12,4 +14,3 @@ public abstract class  BaseModel {
     public UUID getId() {
         return id;
     }
-}
