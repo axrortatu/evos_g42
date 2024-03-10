@@ -1,29 +1,47 @@
-package jahongir.service;
+package jahongir.Service;
 
 import jahongir.model.Category;
 
-import javax.sound.midi.VoiceStatus;
 import java.util.UUID;
 
-public class CategoryService {
+public class categoryService extends BaseService {
     private Category[] categories = new Category[100];
-    private int indexCategories = 0;
+    private int indexCategories;
 
+    public Category[] getCategories() {
+        return categories;
+    }
 
-    public boolean deleteCategory(UUID id) {
-        boolean check = false;
-        for (int i = 0; i < indexCategories - 1; i++) {
-            if (categories[i].getId().equals(id)) {
-                check = true;
+    @Override
+    public boolean add(Object object) {
+        if (validate(object)) {
+            Category category = (Category) object;
+            if (indexCategories < categories.length) {
+                categories[indexCategories++] = category;
+                return true;
             }
-            if (check) {
-                categories[i] = categories[i + 1];
-            }
-        }
-        if (check || categories[indexCategories].getId().equals(id)) {
-            indexCategories--;
-            return true;
         }
         return false;
     }
+
+    @Override
+    public boolean delete(UUID id) {
+        return false;
+    }
+
+    @Override
+    public Object[] list(UUID id) {
+        return new Object[0];
+    }
+
+
+    @Override
+    protected boolean validate(Object object) {
+
+        return false;
+    }
+
+
+
 }
+
