@@ -1,11 +1,9 @@
-package jahongir.model;
+package muhammad_ali.model;
 
 import java.util.UUID;
 
-public class BaseModel {
+public abstract class BaseModel {
     protected UUID id;
-    protected UUID parentId;
-    protected String name;
 
     protected BaseModel() {
         this.id = UUID.randomUUID();
@@ -14,3 +12,4 @@ public class BaseModel {
     public UUID getId() {
         return id;
     }
+}

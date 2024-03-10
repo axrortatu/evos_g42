@@ -1,26 +1,19 @@
 package jahongir.model;
 
-import sardor.model.BaseModel;
+import java.util.UUID;
+
 
 public class Category extends BaseModel {
-    private String name;
-
+    
     public Category(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        super.name = name;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "name='" + name + '\'' +
+                "name='" + super.name + '\'' +
                 '}';
     }
+  
 }

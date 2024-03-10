@@ -1,4 +1,4 @@
-package sardor.model;
+package muhammad_ali.model;
 
 public class User extends BaseModel {
     private String username;
@@ -10,6 +10,4 @@ public class User extends BaseModel {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
 }
