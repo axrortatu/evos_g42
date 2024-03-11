@@ -1,15 +1,15 @@
 package jahongir.service;
 
-import jahongir.model.Basket;
+import jahongir.model.OrderItem;
 
 import java.util.UUID;
 
-public class BasketService extends BaseService {
-    private Basket[] orders = new Basket[100];
-    private int indexBaskets;
+public class OrderItemService extends BaseService {
+    private OrderItem[] orderItems = new OrderItem[10000];
+    private int indexOrderItems;
 
-    public Basket[] getBaskets() {
-        return orders;
+    public OrderItem[] getOrderItems() {
+        return orderItems;
     }
 
     @Override
@@ -20,16 +20,16 @@ public class BasketService extends BaseService {
     @Override
     public boolean delete(UUID id) {
         boolean check = true;
-        for (int i = 0; i < indexBaskets - 1; i++) {
-            if (orders[i].getId().equals(id)) {
+        for (int i = 0; i < indexOrderItems - 1; i++) {
+            if (orderItems[i].getId().equals(id)) {
                 check = true;
             }
             if (check) {
-                orders[i] = orders[i + 1];
+                orderItems[i] = orderItems[i + 1];
             }
         }
-        if (check || orders[indexBaskets].getId().equals(id)) {
-            indexBaskets--;
+        if (check || orderItems[indexOrderItems].getId().equals(id)) {
+            indexOrderItems--;
             return true;
         }
         return false;
