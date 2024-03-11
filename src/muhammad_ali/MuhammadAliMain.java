@@ -56,12 +56,13 @@ public class MuhammadAliMain {
                     User currentUser = userService.login(userName);
                     if (currentUser != null){
                         int option3 = 10;
+                        while (option3 != 3){
                         System.out.println("1.Order 2.Show Basket 3.Confirm");
                         option3 = scannerInt.nextInt();
-                        switch (option3){
+                        switch (option3) {
                             case 1 -> {
                                 Order order = new Order();
-                                Category[] categories =  categoryService.getCategories();
+                                Category[] categories = categoryService.getCategories();
                                 printCategories(categories);
                                 System.out.println("Enter categoryId : ");
                                 String Id = scannerStr.nextLine();
@@ -78,14 +79,15 @@ public class MuhammadAliMain {
                                 basketService.addBasket(basket);
                             }
                             case 2 -> {
-                                 Basket[] basket = basketService.getMyBasket(currentUser.getId());
-                                 printBasket(basket, productService);
+                                Basket[] basket = basketService.getMyBasket(currentUser.getId());
+                                printBasket(basket, productService);
                             }
                             case 3 -> {
                                 printReceipt(basketService.getMyBasket(currentUser.getId()), productService);
                                 orderService.payOrder(currentUser.getId());
                                 basketService.clearBasket(currentUser.getId());
                             }
+                        }
                         }
                     }
                 }
@@ -177,6 +179,14 @@ public class MuhammadAliMain {
                         }
                     }
                 }
+                case 5 -> {
+                     User[] users = userService.getUsers();
+                     printUsers(users);
+                     System.out.println("Enter id : ");
+                     String userId = scannerStr.nextLine();
+                     Order[] orders = orderService.getHistoryByUserId(UUID.fromString(userId));
+                     printOrders(orders, productService);
+                }
             }
         }
     }
@@ -221,7 +231,15 @@ public class MuhammadAliMain {
         }
         System.out.println("Sum : " + sum);
         System.out.println("Delivery price : " + sum * 0.1);
-        System.out.println("Total : " + sum + sum * 0.1);
+        System.out.println("Total : " + (sum + sum * 0.1));
+    }
+    public static void printOrders(Order[] orders, ProductService productService){
+       for (Order order : orders){
+           if (order != null){
+               Product product = productService.getProductByID(order.getProductId());
+               System.out.println(product.getName() + "   Count : " + order.getCnt());
+           }
+       }
     }
 
 }
