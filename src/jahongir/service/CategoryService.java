@@ -18,10 +18,10 @@ public class CategoryService extends BaseService {
         if (validate(category)) {
             categories[indexCategories++] = category;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
+
 
     @Override
     public boolean delete(UUID id) {
@@ -41,28 +41,41 @@ public class CategoryService extends BaseService {
         return false;
     }
 
+
     @Override
     public Object[] list(UUID id) {
-        Category[] parentCategories = new Category[indexCategories];
+        if (!isExist(id)) {
+            return new Category[0];
+        }
         int count = 0;
         for (int i = 0; i < indexCategories; i++) {
             if (categories[i].getId() != null && categories[i].getId().equals(id)) {
-                parentCategories[count++] = categories[i];
+                count++;
             }
         }
         Category[] result = new Category[count];
-        for (int i = 0; i < count; i++) {
-            result[i] = parentCategories[i];
+        int index = 0;
+        for (int i = 0; i < indexCategories; i++) {
+            if (categories[i].getId() != null && categories[i].getId().equals(id)) {
+                result[index++] = categories[i];
+            }
         }
         return result;
     }
 
-    private boolean validate(Category category) {
-        if (category == null) {
-            return false;
+
+    private boolean isExist(UUID id) {
+        for (int i = 0; i < indexCategories; i++) {
+            if (categories[i].getId().equals(id)) {
+                return true;
+            }
         }
-        if (category.getName() == null || category.getName().isEmpty()) {
-            return false;
+        return false;
+    }
+
+    private boolean validate(Category category) {
+        if (category != null && category.getName() != null || category.getName().isEmpty()) {
+            return true;
         }
         return true;
     }
