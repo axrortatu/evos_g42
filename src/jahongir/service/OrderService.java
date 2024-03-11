@@ -21,6 +21,19 @@ public class OrderService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
+        boolean check = true;
+        for (int i = 0; i < indexOrders - 1; i++) {
+            if (orders[i].getId().equals(id)) {
+                check = true;
+            }
+            if (check) {
+                orders[i] = orders[i + 1];
+            }
+        }
+        if (check || orders[indexOrders].getId().equals(id)) {
+            indexOrders--;
+            return true;
+        }
         return false;
     }
 

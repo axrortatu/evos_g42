@@ -21,6 +21,19 @@ public class ProductService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
+        boolean check = true;
+        for (int i = 0; i < indexProducts - 1; i++) {
+            if (products[i].getId().equals(id)) {
+                check = true;
+            }
+            if (check) {
+                products[i] = products[i + 1];
+            }
+        }
+        if (check || products[indexProducts].getId().equals(id)) {
+            indexProducts--;
+            return true;
+        }
         return false;
     }
 
