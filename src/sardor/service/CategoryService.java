@@ -27,10 +27,10 @@ public class CategoryService implements InterfaceService {
         return null;
     }
 
-    @Override
-    public Object update(Object object) {
-        return null;
-    }
+//    @Override
+//    public Object update(Object object) {
+//        return null;
+//    }
 
     @Override       public boolean delete(UUID id) {
         boolean deleteCategory = false;
