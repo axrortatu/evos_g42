@@ -40,7 +40,7 @@ public class JahongirMain implements Frontend {
     }
 
     public static void main(String[] args) {
-        BasketService basketService = new BasketService();
+        OrderItemService orderItemService = new OrderItemService();
         CategoryService categoryService = new CategoryService();
         OrderService orderService = new OrderService();
         ProductService productService = new ProductService();

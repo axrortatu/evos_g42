@@ -14,7 +14,7 @@ public class OrderService extends BaseService {
 
     @Override
     public boolean add(Object object) {
-        Basket[] ordersNew = (Basket[]) object;
+        Basket ordersNew = (Basket) object;
 
         return false;
     }
