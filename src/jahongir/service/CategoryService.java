@@ -23,7 +23,7 @@ public class CategoryService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
-        boolean check=true;
+        boolean check=false;
         for (int i = 0; i < indexCategories - 1; i++) {
             if (categories[i].getId().equals(id)) {
                 check = true;

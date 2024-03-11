@@ -25,7 +25,7 @@ public class UserService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
-        boolean check = true;
+        boolean check = false;
         for (int i = 0; i < indexUsers - 1; i++) {
             if (users[i].getId().equals(id)) {
                 check = true;
