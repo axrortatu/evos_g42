@@ -26,4 +26,7 @@ public class CategoryService {
         }
         return false;
     }
+    /*public Category[] getCategory(){
+        return categories;
+    }*/
 }
