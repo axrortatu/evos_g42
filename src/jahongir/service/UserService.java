@@ -9,7 +9,7 @@ public class UserService extends BaseService {
     private int indexUsers;
 
     public boolean userLogin(String userName) {
-        for (User user: users) {
+        for (User user : users) {
             if (user != null && user.getUserName().equals(userName)) {
                 return true;
             }
@@ -25,6 +25,19 @@ public class UserService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
+        boolean check = true;
+        for (int i = 0; i < indexUsers - 1; i++) {
+            if (users[i].getId().equals(id)) {
+                check = true;
+            }
+            if (check) {
+                users[i] = users[i + 1];
+            }
+        }
+        if (check || users[indexUsers].getId().equals(id)) {
+            indexUsers--;
+            return true;
+        }
         return false;
     }
 
