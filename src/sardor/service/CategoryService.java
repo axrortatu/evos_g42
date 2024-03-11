@@ -1,6 +1,7 @@
 package sardor.service;
 
 import sardor.model.Category;
+import sardor.model.Product;
 
 import java.util.UUID;
 
@@ -28,8 +29,12 @@ public class CategoryService implements InterfaceService {
     }
 
     @Override
-    public Object update(Object object) {
-        return null;
+    public void update(UUID uuid, String name) {
+        for (Category category : categories) {
+            if (category != null && category.getId().equals(uuid) && !category.getName().equals(name)) {
+                category.setName(name);
+            }
+        }
     }
 
     @Override       public boolean delete(UUID id) {
