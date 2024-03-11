@@ -1,3 +1,7 @@
+
+
+
+
 package jahongir.service;
 
 import jahongir.model.Category;
@@ -45,7 +49,7 @@ public class CategoryService extends BaseService {
     @Override
     public Object[] list(UUID id) {
         if (!isExist(id)) {
-            return new Category[0];
+            return null;
         }
         int count = 0;
         for (int i = 0; i < indexCategories; i++) {
@@ -64,9 +68,9 @@ public class CategoryService extends BaseService {
     }
 
 
-    private boolean isExist(UUID id) {
+    private boolean isExist(UUID name) {
         for (int i = 0; i < indexCategories; i++) {
-            if (categories[i].getId().equals(id)) {
+            if (categories[i].getId().equals(name)) {
                 return true;
             }
         }
@@ -74,12 +78,8 @@ public class CategoryService extends BaseService {
     }
 
     private boolean validate(Category category) {
-        if (category != null && category.getName() != null || category.getName().isEmpty()) {
-            return true;
-        }
-        return true;
+        return category != null && category.getName() != null || category.getName().isEmpty() ;
     }
-
 }
 
 
