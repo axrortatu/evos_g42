@@ -21,7 +21,7 @@ public class ProductService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
-        boolean check = true;
+        boolean check = false;
         for (int i = 0; i < indexProducts - 1; i++) {
             if (products[i].getId().equals(id)) {
                 check = true;

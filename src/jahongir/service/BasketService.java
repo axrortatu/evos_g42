@@ -19,7 +19,7 @@ public class BasketService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
-        boolean check = true;
+        boolean check = false;
         for (int i = 0; i < indexBaskets - 1; i++) {
             if (orders[i].getId().equals(id)) {
                 check = true;
