@@ -10,6 +10,10 @@ public class CategoryService implements InterfaceService {
     private int index = 0;
     private Object object;
 
+    public Category[] getCategories() {
+        return categories;
+    }
+
     @Override
     public boolean add(Object object) {
         Category category = (Category) object;
