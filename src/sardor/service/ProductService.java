@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class ProductService implements InterfaceService {
     private Product[] products = new Product[1000];
-    private int indexProduct;
+    private int indexProduct = 0;
 
     public Product[] getProducts() {
         return products;
@@ -88,7 +88,12 @@ public class ProductService implements InterfaceService {
             if (products[i] != null) {
                 products[i] = products[i + 1];
             }
+
         }
+        if(products[indexProduct - 1].equals(products[indexProduct - 2])){
+            products[indexProduct - 1] = null;
+        }
+
         indexProduct--;
         return true;
     }
@@ -100,7 +105,7 @@ public class ProductService implements InterfaceService {
         for (Product product : products) {
             if (product != null && product.getCategoryId() != null) {
                 if (product.getCategoryId().equals(id)) {
-                    categoryProduct[index++] = product;
+                    categoryProduct[index ++] = product;
                 }
             }
 
