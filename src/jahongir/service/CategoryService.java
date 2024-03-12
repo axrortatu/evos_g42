@@ -61,8 +61,8 @@ public class CategoryService extends BaseService {
         int index = 0;
         for (int i = 0; i < index; i++) {
             Category category = categories[i];
-            Object str = (i+1)+". "+category.getName()+" ";
-            parentCategories[i] = (Category) str;
+            Object res = (i+1)+". "+category.getName()+" ";
+            parentCategories[i] = (Category) res;
         }
 
         return parentCategories;
