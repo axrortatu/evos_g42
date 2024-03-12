@@ -8,6 +8,11 @@ import java.util.UUID;
 public class CategoryService implements InterfaceService {
     private Category[] categories= new Category[100];
     private int index=0;
+
+    public Category[] getCategories() {
+        return categories;
+    }
+
     private Object object;
 
     @Override
@@ -40,7 +45,7 @@ public class CategoryService implements InterfaceService {
     @Override       public boolean delete(UUID id) {
         boolean deleteCategory = false;
         for (int i = 0 ; i < index ; i++){
-            if (categories[i].getId().equals(id)){
+            if (categories[i]!=null&&categories[i].getId().equals(id)){
                 deleteCategory = true;
                 categories[i] = null;
                 for (int j = i ;  j < categories.length-1; j++ ){

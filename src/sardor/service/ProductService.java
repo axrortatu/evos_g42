@@ -5,7 +5,7 @@ import sardor.model.Product;
 import java.util.UUID;
 
 public class ProductService implements InterfaceService {
-    private Product[] products = new Product[1000];
+    public Product[] products = new Product[1000];
     private int indexProduct;
 
     public Product[] getProducts() {

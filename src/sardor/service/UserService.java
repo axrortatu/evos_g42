@@ -6,9 +6,12 @@ import sardor.model.User;
 import java.util.UUID;
 
 public class UserService implements InterfaceService {
-    static User[] users = new User[1000];
-    static int userCount = 0;
+    private User[] users = new User[1000];
+    private int userCount = 0;
 
+    public User[] getUsers() {
+        return users;
+    }
 
     @Override
     public boolean add(Object object) {
@@ -55,6 +58,7 @@ public class UserService implements InterfaceService {
         }
         return false;
     }
+
 
     public int getUserIndexByUserId(UUID userId) {
         for (int i = 0; i < userCount; i++) {

@@ -11,6 +11,11 @@ public class Product extends BaseModel {
         return name;
     }
 
+    @Override
+    public UUID getId() {
+        return super.getId();
+    }
+
     public void setName(String name) {
         this.name = name;
     }
