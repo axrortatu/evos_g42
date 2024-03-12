@@ -8,8 +8,17 @@ public class CategoryService extends BaseService {
     private Category[] categories = new Category[100];
     private int indexCategories;
 
-    public Category[] getCategories() {
-        return categories;
+    public String[] getCategories() {
+        String [] categories1;
+        categories1 = new String[indexCategories];
+        for (int i = 0; i < indexCategories; i++) {
+            Category category = categories[i];
+            String str = (i+1)+". "+category.getName()+" ";
+            categories1[i]= str;
+
+        }
+
+        return categories1;
     }
 
     @Override

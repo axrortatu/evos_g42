@@ -45,6 +45,16 @@ public class ProductService implements InterfaceService {
         }
     }
 
+    public boolean updatePrice(UUID id, double price) {
+        for (Product product : products) {
+            if (product != null && product.getId().equals(id) && product.getPrice() != price) {
+                product.setPrice(price);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getProductIndexByProductId(UUID productId) {
         for (int i = 0; i < indexProduct; i++) {
             if (products[i] != null && products[i].getId().equals(productId)) {
@@ -88,8 +98,8 @@ public class ProductService implements InterfaceService {
         Product[] categoryProduct = new Product[100];
         int index = 0;
         for (Product product : products) {
-            if (product != null && product.getCategoryId() != null){
-                if (product.getCategoryId().equals(id)){
+            if (product != null && product.getCategoryId() != null) {
+                if (product.getCategoryId().equals(id)) {
                     categoryProduct[index++] = product;
                 }
             }
