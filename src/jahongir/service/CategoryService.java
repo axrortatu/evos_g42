@@ -8,17 +8,10 @@ public class CategoryService extends BaseService {
     private Category[] categories = new Category[100];
     private int indexCategories;
 
-    public String[] getCategories() {
-        String [] categories1;
-        categories1 = new String[indexCategories];
-        for (int i = 0; i < indexCategories; i++) {
-            Category category = categories[i];
-            String str = (i+1)+". "+category.getName()+" ";
-            categories1[i]= str;
+    public Category[] getCategories() {
 
-        }
 
-        return categories1;
+        return categories;
     }
 
     @Override
@@ -66,6 +59,11 @@ public class CategoryService extends BaseService {
     public Object[] list(UUID id) {
         Category[] parentCategories = new Category[100];
         int index = 0;
+        for (int i = 0; i < index; i++) {
+            Category category = categories[i];
+            Object str = (i+1)+". "+category.getName()+" ";
+            parentCategories[i] = (Category) str;
+        }
 
         return parentCategories;
     }
