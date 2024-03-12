@@ -17,6 +17,10 @@ public class OrderService implements InterfaceService{
         return false;
     }
 
+    public Order[] getOrders() {
+        return orders;
+    }
+
     public void payOrder(UUID id) {
         for (int i = 0; i < indexOrder; i++) {
             if (orders[i] != null && orders[i].getUserId() != null && orders[i].getUserId().equals(id)) {

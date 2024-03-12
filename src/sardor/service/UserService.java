@@ -9,6 +9,9 @@ public class UserService implements InterfaceService {
     static User[] users = new User[1000];
     static int userCount = 0;
 
+    public static User[] getUsers() {
+        return users;
+    }
 
     @Override
     public boolean add(Object object) {
