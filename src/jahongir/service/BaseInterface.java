@@ -1,13 +1,12 @@
-package sardor.service;
+package jahongir.service;
 
 import java.util.UUID;
 
-public interface InterfaceService {
+public interface BaseInterface {
     boolean add(Object object);
-
-    void update(UUID uuid,String name);
-
     boolean delete(UUID id);
-
+    boolean update(UUID id, Object object);
     Object[] list(UUID id);
+
+
 }
