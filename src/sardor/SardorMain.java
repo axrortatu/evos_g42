@@ -218,6 +218,7 @@ public class SardorMain {
         for (User user:userService.getUsers()){
             if (user!=null){
                 System.out.println("User name : "+user.getUsername()+" id : "+user.getId());
+
             }
         }
     }
