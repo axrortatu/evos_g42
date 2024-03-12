@@ -5,6 +5,7 @@ import jahongir.model.User;
 import java.util.UUID;
 
 public class UserService extends BaseService {
+
     private User[] users = new User[100];
     private int indexUsers;
 
@@ -43,8 +44,18 @@ public class UserService extends BaseService {
 
     @Override
     public boolean update(UUID id, Object object) {
+        User updateUser = (User) object;
+        for (int i = 0; i < indexUsers; i++) {
+            if (users[i].getId().equals(id)) {
+                users[i].setUserName(updateUser.getUserName());
+                return true;
+            }
+        }
+
         return false;
     }
+
+
 
     @Override
     public Object[] list(UUID id) {

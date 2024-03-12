@@ -9,6 +9,10 @@ public class OrderItem extends BaseModel {
     private int countProduct;
     private boolean competed;
 
+    public OrderItem(int countProduct) {
+        this.countProduct = countProduct;
+    }
+
     public UUID getBasketId() {
         return basketId;
     }
