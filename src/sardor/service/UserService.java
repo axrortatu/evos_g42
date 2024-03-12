@@ -37,9 +37,8 @@ public class UserService implements InterfaceService{
     }
 
     @Override
-    public Object update(Object object) {
-        return null;
-    }
+    public void update(UUID id , String name) {
+         }
 
     @Override
     public boolean delete(UUID id) {
