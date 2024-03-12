@@ -17,6 +17,14 @@ public class OrderService implements InterfaceService{
         return false;
     }
 
+    public void payOrder(UUID id) {
+        for (int i = 0; i < indexOrder; i++) {
+            if (orders[i] != null && orders[i].getUserId() != null && orders[i].getUserId().equals(id)) {
+                orders[i].setCompeted(true);
+            }
+        }
+    }
+
     @Override
     public void update(UUID id ,String name) {
         for (Order order : orders){
