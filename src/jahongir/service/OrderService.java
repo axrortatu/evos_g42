@@ -40,7 +40,12 @@ public class OrderService extends BaseService {
     @Override
     public boolean update(UUID id, Object object) {
         Basket[] updateOrder = (Basket[]) object;
-
+        for (int i = 0; i < indexOrders; i++) {
+            if (orders[i].getId().equals(id)) {
+                orders[i] = updateOrder[i];
+                return true;
+            }
+        }
         return false;
     }
 

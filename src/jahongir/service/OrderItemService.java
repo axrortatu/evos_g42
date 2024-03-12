@@ -1,5 +1,6 @@
 package jahongir.service;
 
+import jahongir.model.Basket;
 import jahongir.model.OrderItem;
 
 import java.util.UUID;
@@ -37,6 +38,14 @@ public class OrderItemService extends BaseService {
 
     @Override
     public boolean update(UUID id, Object object) {
+        OrderItem updateOrderItem = (OrderItem) object;
+
+        for (int i = 0; i < indexOrderItems; i++) {
+            if (orderItems[i].getUserId().equals(id) && orderItems[i].getId().equals(id)) {
+                orderItems[i].setCountProduct(updateOrderItem.getCountProduct());
+                return true;
+            }
+        }
         return false;
     }
 

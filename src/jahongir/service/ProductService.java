@@ -40,6 +40,12 @@ public class ProductService extends BaseService {
     @Override
     public boolean update(UUID id, Object object) {
         Product updateProduct = (Product) object;
+        for (int i = 0; i < indexProducts; i++) {
+            if (products[i].getId().equals(id)) {
+                products[i].setName(updateProduct.getName());
+                return true;
+            }
+        }
 
         return false;
     }
