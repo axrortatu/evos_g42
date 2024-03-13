@@ -74,4 +74,13 @@ public class ProductService extends BaseService {
         }
         return parentProducts;
     }
+
+    public Product getProductByName(String name) {
+        for (Product product : products) {
+            if (product != null && product.getName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
 }
