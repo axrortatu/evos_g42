@@ -1,3 +1,6 @@
+
+
+
 package jahongir.service;
 
 import jahongir.model.Category;
@@ -79,7 +82,7 @@ public class CategoryService extends BaseService {
     }
 
     private boolean validate(Category category) {
-        return category != null && category.getName() != null || category.getName().isEmpty() ;
+        return category != null && category.getName() != null && !category.getName().isEmpty();
     }
 }
 
