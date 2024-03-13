@@ -3,6 +3,7 @@ package jahongir.model;
 import java.util.UUID;
 
 public class Basket extends BaseModel {
+    private String name;
     private UUID userId;
     private double deliveryPrice;
     private double totalSum;
@@ -38,5 +39,13 @@ public class Basket extends BaseModel {
 
     public void setDeliveryPrice(double deliveryPrice) {
         this.deliveryPrice = deliveryPrice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

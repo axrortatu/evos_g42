@@ -67,4 +67,13 @@ public class OrderItemService extends BaseService {
     public Object[] list(UUID id) {
         return new Object[0];
     }
+
+    public OrderItem getOrderItemByName(String name) {
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem != null && orderItem.getName().equals(name)) {
+                return orderItem;
+            }
+        }
+        return null;
+    }
 }

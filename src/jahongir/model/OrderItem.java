@@ -8,6 +8,7 @@ public class OrderItem extends BaseModel {
     private UUID basketId;
     private int countProduct;
     private boolean competed;
+    private String name;
 
     public OrderItem(int countProduct) {
         this.countProduct = countProduct;
@@ -59,5 +60,13 @@ public class OrderItem extends BaseModel {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

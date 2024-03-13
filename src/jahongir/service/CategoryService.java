@@ -9,12 +9,12 @@ public class CategoryService extends BaseService {
     private int indexCategories;
 
     public String[] getCategories() {
-        String [] categories1;
+        String[] categories1;
         categories1 = new String[indexCategories];
         for (int i = 0; i < indexCategories; i++) {
             Category category = categories[i];
-            String str = (i+1)+". "+category.getName()+" ";
-            categories1[i]= str;
+            String str = (i + 1) + ". " + category.getName() + " ";
+            categories1[i] = str;
 
         }
 
@@ -33,7 +33,7 @@ public class CategoryService extends BaseService {
 
     @Override
     public boolean delete(UUID id) {
-        boolean check=false;
+        boolean check = false;
         for (int i = 0; i < indexCategories - 1; i++) {
             if (categories[i].getId().equals(id)) {
                 check = true;
@@ -63,7 +63,7 @@ public class CategoryService extends BaseService {
 
     @Override
     public Object[] list(UUID id) {
-        if(!isExist(id)){
+        if (!isExist(id)) {
             return null;
         }
         Category[] parentCategories = new Category[100];
@@ -82,7 +82,16 @@ public class CategoryService extends BaseService {
     }
 
     private boolean validate(Category category) {
-        return category != null && category.getName() != null || category.getName().isEmpty() ;
+        return category != null && category.getName() != null || category.getName().isEmpty();
+    }
+
+    public Category getCategoryByName(String name) {
+        for (Category category : categories) {
+            if (category != null && category.getName().equals(name)) {
+                return category;
+            }
+        }
+        return null;
     }
 }
 

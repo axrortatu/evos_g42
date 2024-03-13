@@ -68,4 +68,13 @@ public class OrderService extends BaseService {
 
         return parentOrders;
     }
+
+    public Basket getOrderByName(String name) {
+        for (Basket order : orders) {
+            if (order != null && order.getName().equals(name)) {
+                return order;
+            }
+        }
+        return null;
+    }
 }
