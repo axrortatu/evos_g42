@@ -15,6 +15,20 @@ public class OrderItemService extends BaseService {
 
     @Override
     public boolean add(Object object) {
+        OrderItem orderItem = (OrderItem) object;
+        if (!hasOrderItem(orderItem.getId())) {
+            orderItems[indexOrderItems++] = orderItem;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasOrderItem(UUID id) {
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem != null && orderItem.getId().equals(id)) {
+                return true;
+            }
+        }
         return false;
     }
 
