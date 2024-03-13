@@ -5,7 +5,7 @@ import jahongir.model.Category;
 import java.util.UUID;
 
 public class CategoryService extends BaseService {
-    private Category[] categories = new Category[100];
+    private final Category[] categories = new Category[100];
     private int indexCategories;
 
     public String[] getCategories() {
@@ -52,14 +52,12 @@ public class CategoryService extends BaseService {
     @Override
     public boolean update(UUID id, Object object) {
         Category updateCategory = (Category) object;
-
         for (int i = 0; i < indexCategories; i++) {
             if (categories[i].getId().equals(id)) {
                 categories[i].setName(updateCategory.getName());
                 return true;
             }
         }
-
         return false;
     }
 
@@ -68,20 +66,10 @@ public class CategoryService extends BaseService {
         if (!isExist(id)) {
             return null;
         }
-        int count = 0;
-        for (int i = 0; i < indexCategories; i++) {
-            if (categories[i].getId() != null && categories[i].getId().equals(id)) {
-                count++;
-            }
-        }
-        Category[] result = new Category[count];
+        Category[] parentCategories = new Category[100];
         int index = 0;
-        for (int i = 0; i < indexCategories; i++) {
-            if (categories[i].getId() != null && categories[i].getId().equals(id)) {
-                result[index++] = categories[i];
-            }
-        }
-        return result;
+
+        return parentCategories;
     }
 
     private boolean isExist(UUID name) {
@@ -96,6 +84,5 @@ public class CategoryService extends BaseService {
     private boolean validate(Category category) {
         return category != null && category.getName() != null || category.getName().isEmpty() ;
     }
-
 }
 
