@@ -55,6 +55,12 @@ public class ProductService extends BaseService {
         Product[] parentProducts = new Product[100];
         int index = 0;
 
+        for(Product product: products){
+            if(product.getCategoryId().equals(id)){
+                parentProducts[index++] = product;
+            }
+        }
+
         return parentProducts;
     }
 }
