@@ -68,10 +68,8 @@ public class OrderItemService extends BaseService {
         return new Object[0];
     }
     public boolean validate(OrderItem orderItem) {
-        if (orderItem == null || orderItem.getCountProduct() < 1) {
-            return false;
-        }
-        return true;
+        return orderItem != null && orderItem.getCountProduct() >= 1;
     }
+
 
 }
