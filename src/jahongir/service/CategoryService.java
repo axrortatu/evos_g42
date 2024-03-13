@@ -63,16 +63,13 @@ public class CategoryService extends BaseService {
 
     @Override
     public Object[] list(UUID id) {
-        if (!isExist(id)) {
-            return null;
-        }
         Category[] parentCategories = new Category[100];
         int index = 0;
 
         return parentCategories;
     }
 
-    private boolean isExist(UUID name) {
+    private boolean isExist(String name) {
         for (Category category : categories) {
             if (category != null && category.getId().equals(name)) {
                 return true;
