@@ -67,4 +67,9 @@ public class OrderItemService extends BaseService {
     public Object[] list(UUID id) {
         return new Object[0];
     }
+    public boolean validate(OrderItem orderItem) {
+        return (orderItem != null || orderItem.getCountProduct() > 0);
+
+    }
+
 }
