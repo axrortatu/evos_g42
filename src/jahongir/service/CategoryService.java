@@ -8,7 +8,7 @@ import jahongir.model.Category;
 import java.util.UUID;
 
 public class CategoryService extends BaseService {
-    private Category[] categories = new Category[100];
+    private final Category[] categories = new Category[100];
     private int indexCategories;
 
     public String[] getCategories() {
@@ -74,7 +74,7 @@ public class CategoryService extends BaseService {
 
     private boolean isExist(String name) {
         for (Category category : categories) {
-            if (category != null && category.getId().equals(name)) {
+            if (category.getId() != null && category.getId().equals(name)) {
                 return true;
             }
         }
@@ -82,7 +82,7 @@ public class CategoryService extends BaseService {
     }
 
     private boolean validate(Category category) {
-        return category != null && category.getName() != null && !category.getName().isEmpty();
+        return category != null && !category.getName().isEmpty();
     }
 }
 
