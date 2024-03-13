@@ -15,7 +15,19 @@ public class ProductService extends BaseService {
     @Override
     public boolean add(Object object) {
         Product product = (Product) object;
+        if (!hasProduct(product.getId())) {
+            products[indexProducts++] = product;
+            return true;
+        }
+        return false;
+    }
 
+    private boolean hasProduct(UUID id) {
+        for (Product product : products) {
+            if (product != null && product.getId().equals(id)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -55,12 +67,11 @@ public class ProductService extends BaseService {
         Product[] parentProducts = new Product[100];
         int index = 0;
 
-        for(Product product: products){
-            if(product.getCategoryId().equals(id)){
+        for (Product product : products) {
+            if (product.getCategoryId().equals(id)) {
                 parentProducts[index++] = product;
             }
         }
-
         return parentProducts;
     }
 }

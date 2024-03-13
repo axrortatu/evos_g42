@@ -15,12 +15,25 @@ public class UserService extends BaseService {
                 return true;
             }
         }
-
         return false;
     }
 
     @Override
     public boolean add(Object object) {
+        User user = (User) object;
+        if (!hasUser(user.getId())) {
+            users[indexUsers++] = user;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasUser(UUID id) {
+        for (User user : users) {
+            if (user != null && user.getId().equals(id)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -54,7 +67,6 @@ public class UserService extends BaseService {
 
         return false;
     }
-
 
 
     @Override
