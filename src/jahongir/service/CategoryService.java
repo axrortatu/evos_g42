@@ -24,9 +24,10 @@ public class CategoryService extends BaseService {
     @Override
     public boolean add(Object object) {
         Category category = (Category) object;
-
-        if (validate(category)) {}
-
+        if (validate(category)) {
+            categories[indexCategories++] = category;
+            return true;
+        }
         return false;
     }
 
@@ -64,15 +65,36 @@ public class CategoryService extends BaseService {
 
     @Override
     public Object[] list(UUID id) {
-        Category[] parentCategories = new Category[100];
+        if (!isExist(id)) {
+            return null;
+        }
+        int count = 0;
+        for (int i = 0; i < indexCategories; i++) {
+            if (categories[i].getId() != null && categories[i].getId().equals(id)) {
+                count++;
+            }
+        }
+        Category[] result = new Category[count];
         int index = 0;
+        for (int i = 0; i < indexCategories; i++) {
+            if (categories[i].getId() != null && categories[i].getId().equals(id)) {
+                result[index++] = categories[i];
+            }
+        }
+        return result;
+    }
 
-        return parentCategories;
+    private boolean isExist(UUID name) {
+        for (Category category : categories) {
+            if (category != null && category.getId().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean validate(Category category) {
-
-        return false;
+        return category != null && category.getName() != null || category.getName().isEmpty() ;
     }
 
 }
