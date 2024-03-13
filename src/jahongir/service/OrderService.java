@@ -1,6 +1,7 @@
 package jahongir.service;
 
 import jahongir.model.Basket;
+import muhammad_ali.model.Order;
 
 import java.util.UUID;
 
@@ -15,7 +16,19 @@ public class OrderService extends BaseService {
     @Override
     public boolean add(Object object) {
         Basket ordersNew = (Basket) object;
+        if (!hasOrder(ordersNew.getId())) {
+            orders[indexOrders++] = ordersNew;
+            return true;
+        }
+        return false;
+    }
 
+    private boolean hasOrder(UUID id) {
+        for (Basket order : orders) {
+            if (order != null && order.getId().equals(id)) {
+                return true;
+            }
+        }
         return false;
     }
 

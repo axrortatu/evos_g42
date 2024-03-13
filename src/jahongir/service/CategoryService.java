@@ -1,12 +1,14 @@
 package jahongir.service;
 
 import jahongir.model.Category;
+import jahongir.model.Product;
 
 import java.util.UUID;
 
 public class CategoryService extends BaseService {
     private Category[] categories = new Category[100];
     private int indexCategories;
+    ProductService productService=new ProductService();
 
     public String[] getCategories() {
         String [] categories1;
@@ -42,8 +44,15 @@ public class CategoryService extends BaseService {
             }
         }
         if (check || categories[indexCategories].getId().equals(id)) {
+            UUID deleteId=categories[indexCategories].getId();
             indexCategories--;
-            return true;
+            int count=0;
+            for (int i = 0; i < indexCategories; i++) {
+                if (productService.getProducts()[i].getCategoryId().equals(deleteId)){
+                    productService.getProducts()[i]=null;
+                    count++;
+                }
+            }
         }
         return false;
     }
