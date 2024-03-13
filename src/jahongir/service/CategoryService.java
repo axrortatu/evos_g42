@@ -8,7 +8,7 @@ import jahongir.model.Category;
 import java.util.UUID;
 
 public class CategoryService extends BaseService {
-    private final Category[] categories = new Category[100];
+    Category[] categories = new Category[100];
     private int indexCategories;
 
     public String[] getCategories() {
