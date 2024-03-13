@@ -8,17 +8,8 @@ public class CategoryService extends BaseService {
     private Category[] categories = new Category[100];
     private int indexCategories;
 
-    public String[] getCategories() {
-        String[] categories1;
-        categories1 = new String[indexCategories];
-        for (int i = 0; i < indexCategories; i++) {
-            Category category = categories[i];
-            String str = (i + 1) + ". " + category.getName() + " ";
-            categories1[i] = str;
-
-        }
-
-        return categories1;
+    public Category[] getCategories() {
+        return categories;
     }
 
     @Override
@@ -66,15 +57,13 @@ public class CategoryService extends BaseService {
         if (!isExist(id)) {
             return null;
         }
-        Category[] parentCategories = new Category[100];
-        int index = 0;
 
-        return parentCategories;
+        return categories;
     }
 
-    private boolean isExist(UUID name) {
+    private boolean isExist(String name) {
         for (Category category : categories) {
-            if (category != null && category.getId().equals(name)) {
+            if (category != null && category.getName().equals(name)) {
                 return true;
             }
         }
@@ -82,7 +71,7 @@ public class CategoryService extends BaseService {
     }
 
     private boolean validate(Category category) {
-        return category != null && category.getName() != null || category.getName().isEmpty();
+        return ( category != null && !category.getName().isEmpty() || !isExist(category.getName()) );
     }
 
     public Category getCategoryByName(String name) {
