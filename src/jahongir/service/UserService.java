@@ -73,4 +73,23 @@ public class UserService extends BaseService {
     public Object[] list(UUID id) {
         return new Object[0];
     }
+
+    // getUserById
+    public User getUserById(UUID id) {
+        for (User user : users) {
+            if (user != null && user.getId().equals(id)) {
+                return user;
+            }
+        }
+        return null;
+    }
+    //getUserByName
+    public User getUserByName(String name) {
+        for (User user : users) {
+            if (user != null && user.getUserName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
 }
