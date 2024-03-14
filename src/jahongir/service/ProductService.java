@@ -1,3 +1,6 @@
+
+
+
 package jahongir.service;
 
 import jahongir.model.Product;
@@ -78,6 +81,15 @@ public class ProductService extends BaseService {
     public Product getProductByName(String name) {
         for (Product product : products) {
             if (product != null && product.getName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
+    // getProductById
+    public Product getProductById(UUID id) {
+        for (Product product : products) {
+            if (product != null && product.getId().equals(id)) {
                 return product;
             }
         }
