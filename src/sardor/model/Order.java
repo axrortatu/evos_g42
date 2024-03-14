@@ -7,7 +7,20 @@ public class Order extends BaseModel {
     private int cnt;
     private boolean competed;
     private double deliveryPrice;
+    private boolean check;
     private UUID userId;
+
+    @Override
+    public UUID getId() {
+        return super.getId();
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+    public boolean getCheck(){
+        return check;
+    }
 
     public UUID getProductId() {
         return productId;
