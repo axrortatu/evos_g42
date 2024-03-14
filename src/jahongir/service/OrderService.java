@@ -1,12 +1,19 @@
 package jahongir.service;
 
 import jahongir.model.Basket;
+import jahongir.model.OrderItem;
 
 import java.util.UUID;
 
 public class OrderService extends BaseService {
     private Basket[] orders = new Basket[1000];
     private int indexOrders;
+    OrderItemService orderItemService;
+
+    public void setOrderItemService(OrderItemService orderItemService) {
+        this.orderItemService = orderItemService;
+    }
+
 
     public Basket[] getOrders() {
         return orders;
@@ -51,14 +58,12 @@ public class OrderService extends BaseService {
 
     @Override
     public boolean update(UUID id, Object object) {
-        Basket[] updateOrder = (Basket[]) object;
-        for (int i = 0; i < indexOrders; i++) {
-            if (orders[i].getId().equals(id)) {
-                orders[i] = updateOrder[i];
-                return true;
-            }
+        Basket updateOrder = (Basket) object;
+        if (updateOrder.isActive()){
+            return false;
         }
-        return false;
+        OrderItem[] parentOrderItems = (OrderItem[]) orderItemService.list(updateOrder.getId());
+        return true;
     }
 
     @Override

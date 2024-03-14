@@ -52,8 +52,7 @@ public class OrderItemService extends BaseService {
 
     @Override
     public boolean update(UUID id, Object object) {
-        OrderItem updateOrderItem = (OrderItem) object;
-
+       OrderItem updateOrderItem = (OrderItem) object;
         for (int i = 0; i < indexOrderItems; i++) {
             if (orderItems[i].getUserId().equals(id) && orderItems[i].getId().equals(id)) {
                 orderItems[i].setCountProduct(updateOrderItem.getCountProduct());
@@ -65,7 +64,14 @@ public class OrderItemService extends BaseService {
 
     @Override
     public Object[] list(UUID id) {
-        return new Object[0];
+        OrderItem[] parentOrderItems = new OrderItem[100];
+        int index = 0;
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem != null && orderItem.getBasketId().equals(id)){
+                parentOrderItems[index++] = orderItem;
+            }
+        }
+        return parentOrderItems;
     }
     public boolean validate(OrderItem orderItem) {
         return (orderItem != null || orderItem.getCountProduct() > 0);
