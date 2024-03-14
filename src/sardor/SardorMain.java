@@ -1,6 +1,7 @@
 package sardor;
 
 import sardor.model.Category;
+import sardor.model.Order;
 import sardor.model.Product;
 import sardor.model.User;
 import sardor.service.CategoryService;
@@ -133,31 +134,69 @@ public class SardorMain {
                     int cod1 = 10;
                     while (cod1 != 0) {
                         System.out.println("1.Add user 2.Delet user 3. Update user 4.List user");
-                        cod1=scannerInt.nextInt();
-                        switch (cod1){
-                            case 1->{
+                        cod1 = scannerInt.nextInt();
+                        switch (cod1) {
+                            case 1 -> {
                                 addUser(userService);
                             }
-                            case 2->{
+                            case 2 -> {
                                 printUser(userService);
                                 System.out.println("Delet user id ");
-                                String deletId=scannerId.next();
+                                String deletId = scannerId.next();
                                 userService.delete(UUID.fromString(deletId));
                             }
-                            case 3->{
+                            case 3 -> {
                                 printUser(userService);
                                 System.out.println("Update user id ");
-                                String updateId=scannerId.next();
+                                String updateId = scannerId.next();
                                 System.out.println("New user name");
-                                userService.update(UUID.fromString(updateId),scannerStr.next());
+                                userService.update(UUID.fromString(updateId), scannerStr.next());
                             }
-                            case 4->{
+                            case 4 -> {
                                 printUser(userService);
                             }
                         }
                     }
                 }
-                case 3->{
+                case 3 -> {
+                    System.out.println("User name : ");
+                    User user = userService.hasUser(scannerStr.next());
+                    if (user != null) {
+                        int cod1 = 10;
+                        while (cod1 != 0) {
+                            System.out.println("1.Placing an order 2.View the order 3.Confirmation");
+                            cod1 = scannerInt.nextInt();
+                            switch (cod1) {
+                                case 1 -> {
+                                    printCategory(categoryService);
+                                    System.out.println("Category name : ");
+                                    String name = scannerStr.nextLine();
+                                    Category category = categoryService.hasAdd(name);
+                                    if (category != null) {
+                                        printProduct(productService, category.getId());
+                                        System.out.println("Product id");
+                                        addOrder(orderService, UUID.fromString(scannerId.next()), user.getId());
+                                    } else System.out.println("Error!!!");
+                                }
+                                case 2 -> {
+                                    System.out.println("1.Confirmation 2.Delet order");
+                                    int deletOrder = scannerInt.nextInt();
+                                    if (deletOrder == 2) {
+                                        printOrder(orderService, user.getId());
+                                        System.out.println(" Delet order id : ");
+                                        String deletId = scannerId.next();
+                                        if (orderService.orderDelet(user.getId(), UUID.fromString(deletId))) {
+                                            System.out.println("Successfully");
+                                        } else System.out.println("Error!!!");
+                                    }
+                                }
+                                case 3 -> {
+                                    printOrder(orderService, user.getId());
+                                    System.out.println("Successfully");
+                                }
+                            }
+                        }
+                    }
 
                 }
             }
@@ -174,7 +213,6 @@ public class SardorMain {
     }
 
     public static void printCategory(CategoryService categoryService) {
-        Category category = new Category();
         for (Category category1 : categoryService.getCategories()) {
             if (category1 != null) {
                 System.out.println("Category name : " + category1.getName() + " id : " + category1.getId());
@@ -197,28 +235,50 @@ public class SardorMain {
     }
 
     public static void printProduct(ProductService productService, UUID id) {
-        Product product = new Product();
         for (Product product1 : productService.getProducts()) {
-            if (product1 != null && product1.getId().equals(id)) {
+            if (product1 != null && product1.getCategoryId().equals(id)) {
                 System.out.println("Product name : " + product1.getName() + "Product price : " + product1.getPrice() + " id : " + product1.getId());
             }
         }
     }
-    public static void addUser(UserService userService){
-        User user=new User();
+
+    public static void addUser(UserService userService) {
+        User user = new User();
         System.out.print("User name :");
-        String addUser=scannerStr.nextLine();
+        String addUser = scannerStr.nextLine();
         user.setUsername(addUser);
         if (userService.add(user)) {
             System.out.println("Successfully");
-        }
-        else System.out.println("Error!!!");
+        } else System.out.println("Error!!!");
     }
-    public static void printUser(UserService userService){
-        for (User user:userService.getUsers()){
-            if (user!=null){
-                System.out.println("User name : "+user.getUsername()+" id : "+user.getId());
 
+    public static void printUser(UserService userService) {
+        for (User user : userService.getUsers()) {
+            if (user != null) {
+                System.out.println("User name : " + user.getUsername() + " id : " + user.getId());
+
+            }
+        }
+    }
+
+    public static void addOrder(OrderService orderService, UUID productId, UUID userId) {
+        Order order = new Order();
+        order.setProductId(productId);
+        order.setDeliveryPrice(15000);
+        order.setUserId(userId);
+        order.setCheck(true);
+        System.out.println("Number of orders");
+        order.setCnt(scannerInt.nextInt());
+        if (orderService.add(order)) {
+            System.out.println("Successfully");
+        } else System.out.println("Error!!!");
+    }
+
+    public static void printOrder(OrderService orderService, UUID userId) {
+        int totalSum = 0;
+        for (Order order : orderService.getOrders()) {
+            if (order != null && order.getUserId().equals(userId) && order.getCheck()) {
+                order.toString();
             }
         }
     }

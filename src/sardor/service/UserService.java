@@ -16,20 +16,20 @@ public class UserService implements InterfaceService {
     @Override
     public boolean add(Object object) {
         User user = (User) object;
-        if (!hasUser(user.getUsername())) {
+        if (hasUser(user.getUsername())==null) {
             users[userCount++] = user;
             return true;
         }
         return false;
     }
 
-    private boolean hasUser(String username) {
+    public User hasUser(String username) {
         for (User user : users) {
             if (user != null && user.getUsername().equals(username)) {
-                return true;
+                return user;
             }
         }
-        return false;
+        return null;
     }
 
     public User loginUser(String username) {

@@ -52,6 +52,15 @@ public class OrderService implements InterfaceService{
         }
         return false;
     }
+    public boolean orderDelet(UUID userId,UUID productId){
+        for (Order order:orders){
+            if (order!=null&&order.getUserId().equals(userId)&&order.getProductId().equals(productId)&&order.getCheck()){
+                order.setCheck(false);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public Object[] list(UUID id) {
